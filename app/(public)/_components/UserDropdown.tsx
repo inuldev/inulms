@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import {
   BookOpenIcon,
   ChevronDownIcon,
@@ -9,8 +7,8 @@ import {
   LogOutIcon,
 } from "lucide-react";
 
-import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
+import { useSignOut } from "@/hooks/use-signout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -29,21 +27,7 @@ interface iAppProps {
 }
 
 export function UserDropdown({ name, email, image }: iAppProps) {
-  const router = useRouter();
-
-  async function signOut() {
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          router.push("/");
-          toast.success("Signed out succesfully");
-        },
-        onError: (error) => {
-          toast.error("Failed to sign out " + error.error.message);
-        },
-      },
-    });
-  }
+  const handleSignOut = useSignOut();
 
   return (
     <DropdownMenu>
@@ -99,7 +83,7 @@ export function UserDropdown({ name, email, image }: iAppProps) {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={signOut}>
+        <DropdownMenuItem onClick={handleSignOut}>
           <LogOutIcon size={16} className="opacity-60" aria-hidden="true" />
           <span>Logout</span>
         </DropdownMenuItem>

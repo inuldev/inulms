@@ -2,8 +2,9 @@
 
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Loader2, Send } from "lucide-react";
 import { useState, useTransition } from "react";
-import { GithubIcon, Loader2, Send } from "lucide-react";
+import { IconBrandGithub } from "@tabler/icons-react";
 
 import { authClient } from "@/lib/auth-client";
 
@@ -82,7 +83,7 @@ export function LoginForm() {
             </>
           ) : (
             <>
-              <GithubIcon className="size-4" />
+              <IconBrandGithub className="size-4" />
               <span>Sign in with Github</span>
             </>
           )}
