@@ -34,15 +34,8 @@ export function UserDropdown({ name, email, image }: iAppProps) {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
           <Avatar>
-            <AvatarImage
-              src={image ?? `https://avatar.vercel.sh/${email}`}
-              alt={name}
-            />
-            <AvatarFallback className="rounded-lg">
-              {name && name.length > 0
-                ? name.charAt(0).toUpperCase()
-                : email.charAt(0).toUpperCase()}
-            </AvatarFallback>
+            <AvatarImage src={image} alt="Profile image" />
+            <AvatarFallback>{name[0].toUpperCase()}</AvatarFallback>
           </Avatar>
           <ChevronDownIcon
             size={16}
@@ -51,7 +44,7 @@ export function UserDropdown({ name, email, image }: iAppProps) {
           />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="max-w-64">
+      <DropdownMenuContent align="end" className="min-w-48">
         <DropdownMenuLabel className="flex min-w-0 flex-col">
           <span className="text-foreground truncate text-sm font-medium">
             {name}

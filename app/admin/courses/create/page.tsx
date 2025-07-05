@@ -40,6 +40,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import { RichTextEditor } from "@/components/rich-text-editor/Editor";
+
 export default function CourseCreationPage() {
   const form = useForm<CourseSchemaType>({
     resolver: zodResolver(courseSchema),
@@ -152,11 +154,7 @@ export default function CourseCreationPage() {
                   <FormItem className="w-full">
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Textarea
-                        placeholder="Description"
-                        className="min-h-[120px]"
-                        {...field}
-                      />
+                      <RichTextEditor field={field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
