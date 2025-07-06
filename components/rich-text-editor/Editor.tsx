@@ -2,6 +2,7 @@
 
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
+import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, useEditor } from "@tiptap/react";
 
 import { Menubar } from "./Menubar";
@@ -12,6 +13,9 @@ export function RichTextEditor({ field }: { field: any }) {
       StarterKit,
       TextAlign.configure({
         types: ["heading", "paragraph"],
+      }),
+      Placeholder.configure({
+        placeholder: "Write your content here...",
       }),
     ],
     editorProps: {
@@ -24,7 +28,7 @@ export function RichTextEditor({ field }: { field: any }) {
     onUpdate: ({ editor }) => {
       field.onChange(JSON.stringify(editor.getJSON()));
     },
-    content: field.value ? JSON.parse(field.value) : "<p>Hello World.</p>",
+    content: field.value ? JSON.parse(field.value) : null,
   });
 
   return (
